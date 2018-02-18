@@ -1,0 +1,14 @@
+com\news\common\Pager.class
+com\news\entity\Admin.class
+com\news\service\NewsService.class
+com\news\dao\NewsDao.class
+com\news\controller\BrowseNewsPagingController.class
+com\news\controller\IndexController.class
+com\news\entity\Catalog.class
+com\news\controller\AdminController.class
+com\news\service\CatalogService.class
+com\news\service\AdminService.class
+com\news\common\uploadzp.class
+com\news\entity\News.class
+com\news\dao\AdminDao.class
+com\news\dao\CatalogDao.class

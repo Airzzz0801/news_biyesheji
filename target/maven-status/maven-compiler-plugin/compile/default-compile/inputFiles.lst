@@ -1,0 +1,14 @@
+G:\work\news\src\main\java\com\news\controller\BrowseNewsPagingController.java
+G:\work\news\src\main\java\com\news\dao\CatalogDao.java
+G:\work\news\src\main\java\com\news\common\uploadzp.java
+G:\work\news\src\main\java\com\news\controller\AdminController.java
+G:\work\news\src\main\java\com\news\controller\IndexController.java
+G:\work\news\src\main\java\com\news\common\Pager.java
+G:\work\news\src\main\java\com\news\dao\NewsDao.java
+G:\work\news\src\main\java\com\news\entity\Catalog.java
+G:\work\news\src\main\java\com\news\service\CatalogService.java
+G:\work\news\src\main\java\com\news\dao\AdminDao.java
+G:\work\news\src\main\java\com\news\entity\News.java
+G:\work\news\src\main\java\com\news\service\NewsService.java
+G:\work\news\src\main\java\com\news\entity\Admin.java
+G:\work\news\src\main\java\com\news\service\AdminService.java

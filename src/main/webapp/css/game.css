@@ -1,0 +1,41 @@
+@CHARSET "UTF-8";
+*{
+	margin: 0px;
+	padding: 0px;
+}
+	
+.head{
+	background-color:gray;
+	width:100%;
+	height:100px;
+	float: left;
+	}
+.head ul{
+	background-color:black;
+	text-align:center;
+	width: 100%;
+	margin: 0px auto;
+	margin-top: 80px;
+}
+.head li{
+	display:inline;
+	text-align:center;
+	list-style-type: none;
+}
+.head a{
+	color:white;
+	text-decoration: none;
+}
+.foot{
+	background-color:gray;
+	width:100%;
+	height:164px;
+	float: left;
+}
+.foot .te{
+	margin-top:50px;
+	color:white;
+	background-color:black;
+	width:100%;
+	text-align: center;
+}

@@ -1,6 +1,5 @@
 package com.news.entity;
 
-import java.sql.Blob;
 import java.util.Date;
 
 public class News {
@@ -13,6 +12,7 @@ private String flag;
 private String image;
 private String origin;
 private Catalog catalog;
+private String download;
 public int getId() {
 	return id;
 }
@@ -62,6 +62,12 @@ public Catalog getCatalog() {
 }
 public void setCatalog(Catalog catalog) {
 	this.catalog = catalog;
+}
+public String getDownload() {
+	return download;
+}
+public void setDownload(String download) {
+	this.download = download;
 }
 
 }

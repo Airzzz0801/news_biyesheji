@@ -44,13 +44,13 @@
         <property name="dataSource" ref="dataSource"></property>
     </bean>
 
-    <!-- 数据源配置, 使用c3p0连接池 -->
-    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+    <!-- 数据源配置, 使用druid连接池 -->
+    <bean id="dataSource" class = "com.alibaba.druid.pool.DruidDataSource" destroy-method = "close" >
         <!-- Connection Info -->
-        <property name="driverClass" value="com.mysql.jdbc.Driver"/>
-        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/news"/>
-        <property name="user" value="root"/>
-        <property name="password" value="1q231q23"/>
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/news?useUnicode=true&amp;characterEncoding=utf8"/>
+        <property name="username" value="root"/>
+        <property name="password" value="lrd+-M0rhqdP"/>
 
         <!-- Connection Pooling Info -->
 <!--         <property name="maxActive" value="190"/>

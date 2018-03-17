@@ -1,5 +1,9 @@
 @CHARSET "UTF-8";
-
+.carousel{
+	float: left;
+	height:458px;
+	width:80%;
+}
 .picture{
 	margin:3px;
   border:1px solid #bebebe;
@@ -9,22 +13,25 @@
   text-align:center;
 }
 .zonghe{
-	color:white;
-	background-color:green;
+	
+	color:gray;
+	background-color:#d2d2ff;
 	margin:3px;
 	height: 224px;
 	width: 19%;
 	float: left;
 	text-align: center;
+	font-weight: bold;
 }
 .rencai{
-	color:white;
-	background-color:green;
+	color:gray;
+	background-color:#d2d2ff;
 	margin:3px;
 	height: 225px;
-	width: 49.5%;
+	width: 49%;
 	float: left;
 	text-align: center;
+	font-weight: bold;
 }
 .neirong li{
 	background-color:white;
@@ -33,9 +40,11 @@
 }
 .neirong a:LINK,.neirong a:VISITED{
 	color:black;
+	text-indent:2em; 
 	text-decoration: none;
 }
 .neirong a:ACTIVE , .neirong a:HOVER{
-	color: green;
+	color: #8f1305;
+	text-indent:2em; 
 	text-decoration: none;
 }

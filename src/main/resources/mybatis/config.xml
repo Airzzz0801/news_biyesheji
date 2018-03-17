@@ -9,4 +9,11 @@
 <typeAlias type="com.news.entity.News" alias="News"/>
 <typeAlias type="com.news.entity.Admin" alias="Admin"/>
 </typeAliases>
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor">
+            <!-- config params as the following -->
+            <!--<!–分页参数合理化  –>-->
+            <property name="reasonable" value="true"/>
+        </plugin>
+    </plugins>
 </configuration>

@@ -17,5 +17,9 @@ public interface NewsDao {
 	Integer changenews(News news);
 
 	Integer deletebyid(Integer id);
+
+	List<News> getnewsby(String sort, String order);
+	
+	List<News> getAllNews();
 	
 }

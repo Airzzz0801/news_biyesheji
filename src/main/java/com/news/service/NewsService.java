@@ -35,4 +35,13 @@ public class NewsService {
 		// TODO Auto-generated method stub
 		return newsDao.deletebyid(id);
 	}
+
+	public List<News> getnewsby(String sort, String order) {
+		// TODO 自动生成的方法存根
+		return newsDao.getnewsby(sort, order);
+	}
+	
+	public List<News> getAllNews() {
+		return newsDao.getAllNews();
+	}
 }

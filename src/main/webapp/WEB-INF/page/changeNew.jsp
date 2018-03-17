@@ -8,7 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <script src="ckeditor/config.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript" src="ckeditor/ckeditor.js"></script>
-<title>Insert title here</title>
+<title>新闻修改</title>
 </head>
 <body>
 <form action="changeNew_success.html" method="post" enctype="multipart/form-data">
@@ -19,7 +19,7 @@
 <input type="hidden" name="image" value="${requestScope.image }">
 上传封面图片：<input type="file" accept="image/png,image/gif" name="file"><br/>
 来源：<input type="text" name="origin" value="${requestScope.origin }"><br/>
-时间：<input type="text" name="time" value="${requestScope.date }"><br/>
+<input type="hidden" name="time" value="${requestScope.date }">
 类型：<select name="catalog">
 <c:forEach items="${requestScope.catalogs}" var="u">
 <option value="${u.catalogid}">${u.catalogname}</option>

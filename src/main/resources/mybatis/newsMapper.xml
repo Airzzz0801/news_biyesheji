@@ -16,6 +16,13 @@
 </association>
 </resultMap>
 
+<select id="getnewsby" resultMap="newsBean" parameterType="String">
+select * from news n,catalog c where n.catalog = c.catalogid order by #{0} #{1} limit 0,30
+</select>
+<select id="getAllNews" resultMap="newsBean">
+select * from news n, catalog c where n.catalog = c.catalogid order by datetime desc
+
+</select>
 <select id="getLimitNews" resultMap="newsBean">
 select * from news n, catalog c where n.catalog = c.catalogid 
 <choose>
@@ -34,7 +41,7 @@ order by datetime desc limit #{begin},#{size}
 order by datetime desc limit 0,#{size}
 </when>
 <otherwise>
-order by datetime
+order by datetime desc limit 0,10
 </otherwise>
 </choose>
 </select>

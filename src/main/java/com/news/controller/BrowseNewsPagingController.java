@@ -10,6 +10,7 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.ObjectInputStream.GetField;
 import java.nio.file.Path;
 import java.sql.Blob;
 import java.sql.Timestamp;
@@ -29,10 +30,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 
+import com.alibaba.fastjson.JSON;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.news.common.Pager;
 import com.news.common.uploadzp;
 import com.news.entity.Catalog;
@@ -48,7 +53,12 @@ public class BrowseNewsPagingController {
 	CatalogService catalogservice;
 	@Resource
 	NewsService newsservice;
-	
+	@RequestMapping("list")
+	@ResponseBody
+	public List<News> getby(HttpServletRequest request){
+		List<News> news = newsservice.getnewsby(request.getParameter("sort"),request.getParameter("order"));
+		return news;
+	}
 	@RequestMapping("browseNewsPaging")
 	public String tocatalognews(HttpServletRequest request,ModelMap map){
 		Pager pager = new Pager(Integer.parseInt(request.getParameter("curragePage")), newsservice.getLimitNews(null,null, Integer.parseInt(request.getParameter("catalogid")), null).size(),Integer.parseInt(request.getParameter("catalogid")));
@@ -85,10 +95,19 @@ public class BrowseNewsPagingController {
 	}
 	
 	@RequestMapping("changeNews")
-	public String changeNews(ModelMap map,HttpServletRequest request)
+	public String changeNews(@RequestParam(required = false,defaultValue = "1",value = "pn")Integer pn,@RequestParam(required = false,defaultValue = "10",value = "size")Integer size,ModelMap map)
 	{
-		List<News> news = newsservice.getLimitNews(null,30,null,null);
-		map.put("news", news);
+//		List<News> news = newsservice.getLimitNews(null,30,null,null);
+//		map.put("news", news);
+		//引入分页查询，使用PageHelper分页功能  
+	    //在查询之前传入当前页，然后多少记录  
+	    PageHelper.startPage(pn,size);  
+	    //startPage后紧跟的这个查询就是分页查询  
+	    List<News> emps = newsservice.getAllNews();  
+	    //使用PageInfo包装查询结果，只需要将pageInfo交给页面就可以  
+	    PageInfo pageInfo = new PageInfo<>(emps,5);  
+	    //pageINfo封装了分页的详细信息，也可以指定连续显示的页数  
+	    map.put("pageInfo",pageInfo);  
 		return "admin";
 	}
 	

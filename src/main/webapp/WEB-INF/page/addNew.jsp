@@ -8,7 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <script src="ckeditor/config.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript" src="ckeditor/ckeditor.js"></script>
-<title>Insert title here</title>
+<title>新闻添加</title>
 </head>
 <body>
 <form action="addNew_success.html" method="post" enctype="multipart/form-data">

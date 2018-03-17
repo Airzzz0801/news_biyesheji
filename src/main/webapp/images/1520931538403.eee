@@ -1,0 +1,57 @@
+<h4>创建数据网格（DataGrid）</h4>
+
+<p>为了从远程服务器端加载数据，您应该设置 &#39;url&#39; 属性，在您的服务器端应该返回 JSON 格式数据。请看数据网格（datagrid）文档得到更多关于它的数据格式信息。</p>
+
+<pre>
+
+&nbsp;</pre>
+
+<ol>
+	<li>&lt;table id=&quot;tt&quot; class=&quot;easyui-datagrid&quot; style=&quot;width:600px;height:250px&quot;</li>
+	<li>url=&quot;datagrid2_getdata.php&quot;</li>
+	<li>title=&quot;Load Data&quot; iconCls=&quot;icon-save&quot;</li>
+	<li>rownumbers=&quot;true&quot; pagination=&quot;true&quot;&gt;</li>
+	<li>&lt;thead&gt;</li>
+	<li>&lt;tr&gt;</li>
+	<li>&lt;th field=&quot;itemid&quot; width=&quot;80&quot;&gt;Item ID&lt;/th&gt;</li>
+	<li>&lt;th field=&quot;productid&quot; width=&quot;80&quot;&gt;Product ID&lt;/th&gt;</li>
+	<li>&lt;th field=&quot;listprice&quot; width=&quot;80&quot; align=&quot;right&quot;&gt;List Price&lt;/th&gt;</li>
+	<li>&lt;th field=&quot;unitcost&quot; width=&quot;80&quot; align=&quot;right&quot;&gt;Unit Cost&lt;/th&gt;</li>
+	<li>&lt;th field=&quot;attr1&quot; width=&quot;150&quot;&gt;Attribute&lt;/th&gt;</li>
+	<li>&lt;th field=&quot;status&quot; width=&quot;60&quot; align=&quot;center&quot;&gt;Stauts&lt;/th&gt;</li>
+	<li>&lt;/tr&gt;</li>
+	<li>&lt;/thead&gt;</li>
+	<li>&lt;/table&gt;</li>
+</ol>
+
+<p>我们定义数据网格（datagrid）列，并设置 &#39;pagination&#39; 属性为 true，它将在数据网格（datagrid）的底部生成一个分页（pagination）工具栏。pagination将发送两个参数到服务器：</p>
+
+<ul>
+	<li>page：页码，起始值 1。</li>
+	<li>rows：每页显示行。</li>
+</ul>
+
+<h4>服务器端代码</h4>
+
+<pre>
+
+&nbsp;</pre>
+
+<ol>
+	<li>$page = isset($_POST[&#39;page&#39;]) ? intval($_POST[&#39;page&#39;]) : 1;</li>
+	<li>$rows = isset($_POST[&#39;rows&#39;]) ? intval($_POST[&#39;rows&#39;]) : 10;</li>
+	<li>// ...</li>
+	<li>$rs = mysql_query(&quot;select count(*) from item&quot;);</li>
+	<li>$row = mysql_fetch_row($rs);</li>
+	<li>$result[&quot;total&quot;] = $row[0];</li>
+	<li>&nbsp;</li>
+	<li>$rs = mysql_query(&quot;select * from item limit $offset,$rows&quot;);</li>
+	<li>&nbsp;</li>
+	<li>$items = array();</li>
+	<li>while($row = mysql_fetch_object($rs)){</li>
+	<li>array_push($items, $row);</li>
+	<li>}</li>
+	<li>$result[&quot;rows&quot;] = $items;</li>
+	<li>&nbsp;</li>
+	<li>echo json_encode($result);</li>
+</ol>

@@ -16,5 +16,9 @@ public class AdminService {
 	public List<Admin> getAllAdmins() {
 		return adminDao.getAllAdmins();
 	}
+	public Admin findByUsername(String username) {
+		// TODO 自动生成的方法存根
+		return adminDao.findByUsername(username);
+	}
 
 }

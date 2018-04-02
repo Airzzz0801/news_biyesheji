@@ -1,16 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:p="http://www.springframework.org/schema/p" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:context="http://www.springframework.org/schema/context" xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:aop="http://www.springframework.org/schema/aop"
     xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
 
 	<!-- 
 		spring可以自动去扫描base-package下面或者子包下面的java文件，
 		如果扫描到有@Component @Controller @Service @Repository等这些注解的类，则把这些类注册为bean 
 	-->
-    <context:component-scan base-package="com.news.*" />
-
+    <context:component-scan base-package="com.news.*" >
+    <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service"/>
+    </context:component-scan>
+    <!-- AOP注解开启配置 -->
+	<aop:aspectj-autoproxy proxy-target-class="true"/>
+	<mvc:annotation-driven content-negotiation-manager="contentNegotiationManager"/>   
+	<bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">   
+		<property name="favorPathExtension" value="false" />  
+		<property name="favorParameter" value="false" />   
+		<property name="ignoreAcceptHeader" value="false" />   
+		<property name="mediaTypes" >   
+			<value>  
+				atom=application/atom+xml  
+				html=text/html  
+				json=application/json
+				*=*/*  
+			</value>   
+		</property>  
+	</bean>
     <!-- 
     	模型解析，在请求时为模型视图名称添加前后缀 
     	比如在controller类中需要请求/WEB-INF/page/index.jsp文件，直接写index就可以了
@@ -25,5 +44,35 @@
                <!--   <ref bean="mappingJacksonHttpMessageConverter" />-->
             </list>
         </property>
+        
     </bean>
+ <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"
+          depends-on="lifecycleBeanPostProcessor">
+        <property name="proxyTargetClass" value="true" />
+    </bean>
+
+    <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+        <property name="securityManager" ref="securityManager"/>
+    </bean>
+    <bean
+	class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+	<property name="exceptionMappings">
+		<props>
+			<prop key="org.apache.shiro.authz.UnauthorizedException">
+				/unauthorized
+			</prop>
+			<prop key="org.apache.shiro.authz.UnauthenticatedException">
+				/unauthenticated
+			</prop>
+		</props>
+	</property>
+</bean>
+    
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">  
+    <!-- 设置上传文件的最大尺寸为100M -->
+    <property name="maxUploadSize" value="1073741824"/>
+    <property name="maxInMemorySize" value="4096"/>
+    <property name="defaultEncoding" value="UTF-8"/>
+    <property name="resolveLazily" value="true"/>  
+</bean>
 </beans>

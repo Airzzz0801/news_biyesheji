@@ -24,7 +24,7 @@ display: inline;
       <strong>管理系统</strong>
     </div>
   </div>
-欢迎您，管理员${sessionScope.admin.username}</br>
+欢迎您，管理员${sessionScope.user.username}</br>
 <a href="logout.html"class="easyui-linkbutton">注销</a>
 <a href="addNew.html" target="_blank" class="easyui-linkbutton">增加新闻</a>
 <div>
@@ -51,7 +51,8 @@ data-options="fitColumns:true" singleSelect="true" url="changNews.html"
 			<td>${u.date}</td>
 			<td>${u.catalog.catalogname}</td>
 			<td>${u.origin}</td>
-			<td>${u.download}</td>
+			<td><c:if test="${u.download!=null}">
+			<a href="download.html?download=${u.download}" target="_balnk">下载</a></c:if></td>
 			<td><a href="changeNew.html?catalogid=${u.catalog.catalogid }&newsid=${u.id}" target="_balnk">修改</a></td>
 			<td><a href="deleteNew.html?catalogid=${u.catalog.catalogid }&newsid=${u.id}" target="_blank">删除</a></td>
 		</tr>

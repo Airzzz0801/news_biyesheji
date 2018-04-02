@@ -11,4 +11,6 @@ public interface AdminDao {
 
 	List<Admin> getAllAdmins();
 
+	Admin findByUsername(String username);
+
 }

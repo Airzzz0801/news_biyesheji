@@ -4,4 +4,8 @@
 <select id="getAllAdmins" resultType="Admin">
 select * from admin
 </select>
+<select id="findByUsername" resultType="Admin">
+select * from admin where username=#{username}
+</select>
+
 </mapper>

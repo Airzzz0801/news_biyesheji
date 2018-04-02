@@ -10,6 +10,7 @@
 <result column="flag" property="flag"/>
 <result column="image" property="image"/>
 <result column="origin" property="origin"/>
+<result column="download" property="download"/>
 <association property="catalog" javaType="Catalog">
 <id column="catalogid" property="catalogid"/>
 <result column="catalogname" property="catalogname"/>
@@ -47,8 +48,8 @@ order by datetime desc limit 0,10
 </select>
 
 <insert id="addnews" >
-insert into news (newsname,news,datetime,flag,image,origin,catalog) 
-values ('${newsname}','${news}','${date}','${flag}','${image}','${origin}','${catalog.catalogid}')
+insert into news (newsname,news,datetime,flag,image,origin,catalog,download) 
+values ('${newsname}','${news}','${date}','${flag}','${image}','${origin}','${catalog.catalogid}','${download}')
 </insert>
 
 <update id="changenews">
@@ -60,6 +61,7 @@ UPDATE news
 <if test="flag!=null">flag=#{flag},</if>
 <if test="image!=null">image=#{image},</if>
 <if test="origin!=null">origin=#{origin},</if>
+<if test="download!=null">download=#{download},</if>
 <if test="catalog.catalogid!=null">catalog=#{catalog.catalogid},</if>
 </set>
 where id=#{id}

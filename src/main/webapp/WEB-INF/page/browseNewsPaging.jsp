@@ -56,6 +56,10 @@ ${requestScope.news1.newsname}
 <li>来源：<span>${requestScope.news1.origin}</span></li>
 </c:if>
 <li>分类：<span>${requestScope.news1.catalog.catalogname }</span></li>
+<c:if test="${requestScope.news1.download!=null}">
+<li>
+		<br>	附件下载：<a href="download.html?download=${requestScope.news1.download}" target="_balnk">下载</a>
+			</c:if>
 </ul>
 </div>
 <hr style="height:1px;border:none;border-top:1px dashed #0066CC;" />

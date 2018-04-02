@@ -55,7 +55,7 @@ public class IndexController {
 	public String totest() {
 		return "test";
 	}
-	 @RequestMapping("/testResponseEntity")
+/*	 @RequestMapping("/testResponseEntity")
 	    public ResponseEntity<byte[]> testResponseEntity(HttpSession session) throws IOException {
 	        byte[] body=null;
 	        ServletContext sc=session.getServletContext();
@@ -65,6 +65,24 @@ public class IndexController {
 
 	        HttpHeaders headers=new HttpHeaders();
 	        headers.add("Content-Disposition","attachment;filename=黑色沙漠第十五职业-兰觉醒.mp4");
+
+	        HttpStatus statusCode=HttpStatus.OK;
+
+	        ResponseEntity<byte[]> response=new ResponseEntity<byte[]>(body,headers,statusCode);
+	        return response;
+	    }*/
+	    
+	    @RequestMapping("/download")
+	    public ResponseEntity<byte[]> ResponseEntity(HttpSession session,HttpServletRequest request) throws IOException {
+	        String file = request.getParameter("download");
+	    	byte[] body=null;
+	        ServletContext sc=session.getServletContext();
+	        InputStream in=sc.getResourceAsStream("/download/"+file);
+	        body=new byte[in.available()];
+	        in.read(body);
+
+	        HttpHeaders headers=new HttpHeaders();
+	        headers.add("Content-Disposition","attachment;filename="+file);
 
 	        HttpStatus statusCode=HttpStatus.OK;
 
